@@ -3,6 +3,8 @@
 #include <vector>
 #include<algorithm>
 #include<set>
+#include<map>
+#include<bits/stdc++.h>
 
 using namespace std;
 
@@ -79,6 +81,50 @@ void setDemo()
 	}
 
 }
+void mapDemo()
+{
+	map<int, int> a;
+	a[1] = 18;
+	a[2] = 02;
+	a[59] = 3;
+
+	map<char, int> c;
+
+	string x = "Gaurav Anand";
+
+	for (char i : x)
+	{
+		c[i]++;
+	}
+	cout << c['a'] << setw(7) << c['G'] << endl;						// 3 & 1
+	cout << a[1] << endl;
+}
+
+void powerstl()
+{
+	set<pair<int, int> > s;
+	s.insert({401, 450});
+	s.insert({10, 20});
+	s.insert({2, 3});
+	s.insert({30, 400});
+
+	int point = 2;
+
+	auto it = s.upper_bound({point, INT_MAX});
+	if (it == s.begin())
+	{
+		cout << "the given point not Found" << endl;
+		return;
+	}
+	it--;
+	pair<int, int>current = *it;
+	if (current.first <= point && point <= current.second) {
+		cout << "Yes Present in range : " << current.first << "  " << current.second << endl;
+	}
+	else {
+		cout << "Point not lying on interval";
+	}
+}
 
 int main()
 {
@@ -87,7 +133,7 @@ int main()
 	freopen("output.txt", "w", stdout);
 #endif
 
-	setDemo();
+	powerstl();
 
 	return 0;
 }
