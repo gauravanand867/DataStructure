@@ -133,7 +133,48 @@ int main()
 	freopen("output.txt", "w", stdout);
 #endif
 
-	powerstl();
+	int n;
+	cin >> n;
+	long long TS = 0;
+	vector<int> A(n + 5, 0);			// size=n & initialised with 0
+	for (int i = 0; i < n; i++) cin >> A[i], TS += A[i];
+	if (TS & 1) {
+		cout << "NO";
+		return 0;
+	}
+
+	map<long long, int> first, second;
+	first[A[0]] = 1;
+
+	for (int i = 1; i < n; i++) second[A[i]]++;
+
+	long long p = 0;
+	for (int i = 0; i < n - 1; i++) {
+		p += A[i];
+		if (p == TS / 2) {
+			cout << "YES";
+			return 0;
+		}
+		if (p < TS / 2) {
+			long long x = TS / 2 - p;
+			if (second[x] > 0) {
+				cout << "YES\n";
+				return 0;
+			}
+		}
+		else {
+			long long y = p - TS / 2;
+			if (first[y] > 0) {
+				cout << "YES\n";
+				return 0;
+			}
+		}
+		first[A[i + 1]]++;
+		second[A[i + 1]]--;
+	}
+	cout << "NO\n";
+
+
 
 	return 0;
 }
