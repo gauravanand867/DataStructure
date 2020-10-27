@@ -1,1 +1,1 @@
-Result is 32
+Result is 24
